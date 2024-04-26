@@ -12,3 +12,10 @@ Feature: Search
         | item       |
         | tomato     |
         | sunglasses |
+
+
+      Scenario: The search results page shows 48 per page
+        Given I select search field
+        When I enter 'biscuits'
+        And I click on Show 48 per page
+        Then The page with search results is shown

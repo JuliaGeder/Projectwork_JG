@@ -1,3 +1,31 @@
 
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+U
+%src/test/java/driver/BrowserType.java,9\1\9167e68cb1e964108bfe2b5395e384162d672896
+[
++src/test/java/driver/DriverInitializer.java,7\d\7da90ac72b0607188948fcd26a6dbf4d52a1eb90
+R
+"src/test/java/driver/Settings.java,2\3\236d6866a8937b249938ff672b860a4c17f29583
+Y
+)src/test/java/gherkin_steps/Language.java,6\6\665f510e2b8e819524738ccdbf0c66b805b946df
+Q
+!src/test/java/steps/Language.java,b\9\b9d9621c1987effcbb9b02652d1cf3fbfb0057fc
+S
+#src/test/java/steps/MyStepdefs.java,2\f\2f87ee81845bb72a4038684432431c3c26261668
+Q
+!src/test/java/base_items/BasePage,7\6\76992ef1b09be6f5f1546b5c010b03faf42761c5
+V
+&src/test/java/base_items/BaseTest.java,5\d\5d371f81f28ff81a12aad12053b8c83200e59c5e
+V
+&src/test/java/base_items/BasePage.java,0\3\038bf7618a09719b5814ea46972baa9d02363608
+U
+%src/test/java/tests/languageTest.java,f\1\f1a31c41b38909eca88a042c34db4d248b903196
+Q
+!src/test/java/tests/Language.java,f\d\fde80bceee76f4b3071913cb03a875f143a32e03
+U
+%src/test/java/tests/LanguageTest.java,0\3\03acc55ffd35744018b611216896a60ec3170fb7
+O
+src/test/java/steps/Search.java,6\e\6e830e6e389f3a23dddb8464e2885a760ec73c29
+P
+ src/test/java/steps/Search1.java,b\f\bf0d63178e3420e4830029b9e0152a2396818d9a

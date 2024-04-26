@@ -60,6 +60,11 @@
             <version>1.9.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>7.1.0</version>
+        </dependency>
     </dependencies>
 
 </project>
