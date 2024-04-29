@@ -7,11 +7,11 @@ Feature: Search
       Examples:
         | item       |
         | tomato     |
-        | sunglasses |
+        | glass      |
 
 
       Scenario: The search results page shows 48 per page
         Given I select search field
         When I enter 'biscuits'
-        And I click on Show 48 per page
+        And I click on Show more per page
         Then The page with search results is shown

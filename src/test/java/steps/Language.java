@@ -28,7 +28,7 @@ public class Language {
         driver.get(Settings.TESCO_URL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         homePage = new HomePage(driver);
-        homePage.clickPolicyButton();
+        homePage.policyButton.click();
         homePage.isLoaded();
     }
 
@@ -70,6 +70,6 @@ public class Language {
 
     @After
     public void closeBrowser() {
-        driver.quit();
+        driver.close();
     }
 }

@@ -22,13 +22,9 @@ public class BasePage {
     private WebElement brandLogo;
 
     @FindBy(xpath = "//span[contains(text(),'Accept all cookies')]//ancestor::button")
-    private WebElement policyButton;
+    public WebElement policyButton;
 
     public void isLoaded() {
         wait.until(ExpectedConditions.visibilityOf(brandLogo));
     }
-    public void acceptPolicy() {
-        policyButton.click();
-    }
-
 }

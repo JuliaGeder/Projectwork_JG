@@ -10,11 +10,8 @@ public class HomePage extends BasePage{
     }
 
     @FindBy(xpath = "//span[contains(text(),'Accept all cookies')]//ancestor::button")
-    private WebElement policyButton;
+    public WebElement policyButton;
 
-    public void clickPolicyButton() {
-        policyButton.click();
-    }
 
     @FindBy(className = "content-title__txt")
     public WebElement contentTitle;
@@ -22,6 +19,8 @@ public class HomePage extends BasePage{
     @FindBy(id = "utility-header-language-switch-link")
     public WebElement languageSwitch;
 
-    @FindBy(xpath = ("//input[@id='search-input']));"))
+    @FindBy(xpath = "//input[@id='search-input']")
     public WebElement searchField;
+    @FindBy(xpath = "//*[@id='search-form']/button")
+    public WebElement searchButton;
 }

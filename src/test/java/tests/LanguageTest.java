@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class LanguageTest extends BaseTest {
-    public WebDriver driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
+  /*  public WebDriver driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
     public WebDriverWait wait;
     public HomePage homePage;
 
@@ -25,7 +25,7 @@ public class LanguageTest extends BaseTest {
         driver.get(Settings.TESCO_URL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         homePage = new HomePage(driver);
-        homePage.clickPolicyButton();
+        homePage.policyButton.click();
         homePage.isLoaded();
 
         String newLanguage = "hungarian";
@@ -48,6 +48,6 @@ public class LanguageTest extends BaseTest {
             currentLanguage = "hungarian";
             System.out.println(currentLanguage);
         }
-        driver.quit();
-    }
+        driver.close();
+    }*/
 }
