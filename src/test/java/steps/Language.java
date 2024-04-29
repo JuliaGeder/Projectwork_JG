@@ -9,10 +9,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,31 +26,35 @@ public class Language {
     public WebDriver driver;
     public WebDriverWait explicitWait;
 
-    @Given("I open the main page")
-    public void iOpenTheMainPage() {
-        driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
+    @BeforeEach
+    public void initializeDriver() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        driver = new ChromeDriver(options);
         driver.get(Settings.TESCO_URL);
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
-    @And("I accept cookies")
-    public void iAcceptCookies() {
-       /* WebElement acceptCookiesBttn = driver.findElement(By.xpath("//span[contains(text(),'Accept all cookies')]//ancestor::button"));
+        WebElement acceptCookiesBttn = driver.findElement(By.xpath("//span[contains(text(),'Accept all cookies')]//ancestor::button"));
         acceptCookiesBttn.click();
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
-   */ }
+    }
+
+    @AfterEach
+    public void closeBrowser() {
+        driver.quit();
+    }
 
     @Given("language is set to {string}")
     public void languageIsSetToCurrentLanguage(String newLanguage) {
         WebElement currentLanguageElement = driver.findElement(By.className("content-title__txt"));
-        WebElement langualeSwitch = driver.findElement(By.id("utility-header-language-switch-link"));
+        WebElement languageSwitch = driver.findElement(By.id("utility-header-language-switch-link"));
         if (currentLanguageElement.getText().equals("Offers this week from Tesco")) {
             if (newLanguage.equals("hungarian")) {
-                langualeSwitch.click();
+                languageSwitch.click();
             }
         } else {
             if (newLanguage.equals("english")) {
-                langualeSwitch.click();
+                languageSwitch.click();
             }
         }
         //wait for the page to reload
@@ -75,7 +82,7 @@ public class Language {
         } else {
             currentLanguage = "hungarian";
         }
-
+        Assertions.assertEquals(expectedLanguage, currentLanguage);
         driver.quit();
     }
 }

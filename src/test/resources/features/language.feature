@@ -1,11 +1,5 @@
 Feature: Language Change
 
-  Background:
-    Given I open the main page
-    And I accept cookies
-
-  Rule: Language Change is allowed
-
     Scenario Outline: Language can be changed to English and to Hungarian as well
       Given language is set to '<currentLanguage>'
       When I change language to '<newLanguage>'
@@ -14,4 +8,4 @@ Feature: Language Change
       Examples:
         | currentLanguage | newLanguage | expectedLanguage |
         | hungarian       | english     | english          |
-        #| english         | hungarian   | hungarian        |
+        | english         | hungarian   | hungarian        |
