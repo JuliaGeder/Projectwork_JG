@@ -33,6 +33,7 @@ public class Search {
         driver.get(Settings.TESCO_URL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         searchPage = new SearchPage(driver);
+        searchPage.policyButton.click();
         searchPage.isLoaded();
     }
 
