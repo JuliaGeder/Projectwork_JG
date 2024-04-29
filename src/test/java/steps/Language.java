@@ -1,22 +1,16 @@
 package steps;
 
-import base_items.BaseTest;
+import base_items.HomePage;
 import driver.BrowserType;
 import driver.DriverInitializer;
 import driver.Settings;
-import io.cucumber.java.en.And;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -24,65 +18,58 @@ import java.time.Duration;
 public class Language {
 
     public WebDriver driver;
-    public WebDriverWait explicitWait;
+    public WebDriverWait wait;
+    public HomePage homePage;
 
-    @BeforeEach
-    public void initializeDriver() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-blink-features=AutomationControlled");
-        driver = new ChromeDriver(options);
+    @Before
+    public void startDriver() {
+
+        driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
         driver.get(Settings.TESCO_URL);
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-
-        WebElement acceptCookiesBttn = driver.findElement(By.xpath("//span[contains(text(),'Accept all cookies')]//ancestor::button"));
-        acceptCookiesBttn.click();
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
-    }
-
-    @AfterEach
-    public void closeBrowser() {
-        driver.quit();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        homePage = new HomePage(driver);
+        homePage.clickPolicyButton();
+        homePage.isLoaded();
     }
 
     @Given("language is set to {string}")
     public void languageIsSetToCurrentLanguage(String newLanguage) {
-        WebElement currentLanguageElement = driver.findElement(By.className("content-title__txt"));
-        WebElement languageSwitch = driver.findElement(By.id("utility-header-language-switch-link"));
-        if (currentLanguageElement.getText().equals("Offers this week from Tesco")) {
+        if (homePage.contentTitle.getText().equals("Offers this week from Tesco")) {
             if (newLanguage.equals("hungarian")) {
-                languageSwitch.click();
+                homePage.languageSwitch.click();
             }
         } else {
             if (newLanguage.equals("english")) {
-                languageSwitch.click();
+                homePage.languageSwitch.click();
             }
         }
-        //wait for the page to reload
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
+        homePage.isLoaded();
     }
 
     @When("I change language to {string}")
     public void iChangeLanguageToNewLanguage(String newLanguage) {
         if (newLanguage.equals("english")) {
-            driver.findElement(By.id("utility-header-language-switch-link")).click();
+            homePage.languageSwitch.click();
         } else {
-            driver.findElement(By.id("utility-header-language-switch-link")).click();
+            homePage.languageSwitch.click();
         }
         //wait for the page to reload
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
+        homePage.isLoaded();
     }
 
     @Then("language is changed to {string}")
     public void languageIsChangedToExpectedLanguage(String expectedLanguage) {
         String currentLanguage = "";
-
-        WebElement currentLanguageElement = driver.findElement(By.className("content-title__txt"));
-        if (currentLanguageElement.getText().equals("Offers this week from Tesco")) {
+        if (homePage.contentTitle.getText().equals("Offers this week from Tesco")) {
             currentLanguage = "english";
         } else {
             currentLanguage = "hungarian";
         }
         Assertions.assertEquals(expectedLanguage, currentLanguage);
+    }
+
+    @After
+    public void closeBrowser() {
         driver.quit();
     }
 }

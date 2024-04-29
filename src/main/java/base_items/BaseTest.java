@@ -1,10 +1,7 @@
 package base_items;
 
-import driver.BrowserType;
-import driver.DriverInitializer;
 import driver.Settings;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,8 +14,8 @@ import java.time.Duration;
 
 public class BaseTest {
 
-    public WebDriver driver;
-    public WebDriverWait explicitWait;
+ /*   public WebDriver driver;
+    public WebDriverWait wait;
 
     @BeforeEach
     public void initializeDriver() {
@@ -26,15 +23,15 @@ public class BaseTest {
         options.addArguments("--disable-blink-features=AutomationControlled");
         driver = new ChromeDriver(options);
         driver.get(Settings.TESCO_URL);
-        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
         WebElement acceptCookiesBttn = driver.findElement(By.xpath("//span[contains(text(),'Accept all cookies')]//ancestor::button"));
         acceptCookiesBttn.click();
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
     }
 
     @AfterEach
     public void closeBrowser() {
         driver.quit();
-    }
+    }*/
 }

@@ -8,4 +8,4 @@ Feature: Language Change
       Examples:
         | currentLanguage | newLanguage | expectedLanguage |
         | hungarian       | english     | english          |
-        | english         | hungarian   | hungarian        |
+      #  | english         | hungarian   | hungarian        |

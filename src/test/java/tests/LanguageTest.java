@@ -1,28 +1,53 @@
 package tests;
 
 import base_items.BaseTest;
+import base_items.HomePage;
+import driver.BrowserType;
+import driver.DriverInitializer;
+import driver.Settings;
+import io.cucumber.java.After;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class LanguageTest extends BaseTest {
+    public WebDriver driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
+    public WebDriverWait wait;
+    public HomePage homePage;
+
 
     @Test
     public void languageCheck(){
+        driver.get(Settings.TESCO_URL);
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        homePage = new HomePage(driver);
+        homePage.clickPolicyButton();
+        homePage.isLoaded();
+
         String newLanguage = "hungarian";
-        WebElement currentLanguageElement = driver.findElement(By.className("content-title__txt"));
-        WebElement langualeSwitch = driver.findElement(By.id("utility-header-language-switch-link"));
-        if (currentLanguageElement.getText().equals("Offers this week from Tesco")) {
+        if (homePage.contentTitle.getText().equals("Offers this week from Tesco")) {
             if (newLanguage.equals("hungarian")) {
-                langualeSwitch.click();
+                homePage.languageSwitch.click();
             }
         } else {
             if (newLanguage.equals("english")) {
-                langualeSwitch.click();
+                homePage.languageSwitch.click();
             }
         }
         //wait for the page to reload
-        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("brand-logo-link")));
+        String currentLanguage = "";
+        if (homePage.contentTitle.getText().equals("Offers this week from Tesco")) {
+            currentLanguage = "english";
+            System.out.println(currentLanguage);
+        } else {
+            currentLanguage = "hungarian";
+            System.out.println(currentLanguage);
+        }
+        driver.quit();
     }
 }
