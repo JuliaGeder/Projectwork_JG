@@ -22,4 +22,7 @@ public class SearchPage extends HomePage {
 
     @FindBy (xpath = "//*[@id=\"product-list\"]/div[2]/div[3]/div/div[1]/div[1]/div[2]/a")
     public WebElement show48PerPage;
+
+    @FindBy (xpath = "//*[@id=\"product-list\"]/div[2]/div[3]/div/div[2]/div/p")
+    public WebElement emptySearchResult;
 }

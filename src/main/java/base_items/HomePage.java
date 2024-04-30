@@ -23,4 +23,7 @@ public class HomePage extends BasePage{
     public WebElement searchField;
     @FindBy(xpath = "//*[@id='search-form']/button")
     public WebElement searchButton;
+
+    @FindBy(xpath = "//a[contains(text(),'Sign in')]")
+    public WebElement signInButtonHomePage;
 }

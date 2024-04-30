@@ -19,23 +19,22 @@ import java.time.Duration;
 
 public class Login {
 
-    public WebDriver driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
-    ;
-
-    public LoginPage loginPage = new LoginPage(driver);
+    public WebDriver driver;
+    public WebDriverWait wait;
+    public LoginPage loginPage;
     ;
 
     @Before
     public void startDriver() {
-        //   driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
+        driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
         driver.get(Settings.TESCO_URL);
-        //  loginPage = new LoginPage(driver);
-        loginPage.isLoaded();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        loginPage = new LoginPage(driver);
+        loginPage.signInButtonHomePage.click();
     }
 
     @Given("I am on the sign-in page")
     public void iAmOnTheSignInPage() {
-        loginPage.signInButtonHomePage.click();
         loginPage.loginFormIsLoaded();
     }
 

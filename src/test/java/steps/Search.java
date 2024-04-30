@@ -12,6 +12,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,20 +53,25 @@ public class Search {
 
     @Then("The page with search results is shown")
     public void thePageWithSearchResultsIsShown() {
-        wait.until(ExpectedConditions.visibilityOfAllElements(searchPage.searchResults));
-        //   List<WebElement> searchResults = driver.findElements(By.className("styled__StyledLIProductItem-sc-198470k-1 fmKLdy product-list--list-item"));
-        System.out.println(searchPage.searchResults.size() + "items on the first search page.");
+        wait.until(ExpectedConditions.visibilityOf(searchPage.headingQuery));
+        System.out.println(searchPage.searchResults.size() + " items on the first search page.");
     }
 
     @And("I click on Show more per page")
     public void iClickOnShowPerPage() {
         searchPage.show48PerPage.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(searchPage.searchResults));
-        System.out.println(searchPage.searchResults.size() + "items on the first search page.");
+        System.out.println(searchPage.searchResults.size() + " items on the first search page.");
 
     }
+
     @After
     public void closeBrowser() {
         driver.close();
+    }
+
+    @Then("Zero items were found")
+    public void zeroItemsWereFound() {
+        Assertions.assertEquals("Please double-check the spelling, try a more generic search term or try other search terms.", searchPage.emptySearchResult.getText());
     }
 }

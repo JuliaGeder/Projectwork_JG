@@ -7,14 +7,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends HomePage{
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
-
-    @FindBy(linkText = "//*[@id=\"main\"]/div[1]/div/div[1]/div[1]/div[2]/div[2]/div[3]/div[1]/div/div[1]/div[2]/a")
-    public WebElement signInButtonHomePage;
 
     @FindBy(id = "email")
     public WebElement addressField;

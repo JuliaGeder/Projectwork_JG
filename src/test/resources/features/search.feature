@@ -15,3 +15,8 @@ Feature: Search
         When I enter 'biscuits'
         And I click on Show more per page
         Then The page with search results is shown
+
+  Scenario: The search page shows no results
+    Given I select search field
+    When I enter 'sunglasses'
+    Then Zero items were found
