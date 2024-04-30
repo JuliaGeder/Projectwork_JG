@@ -29,7 +29,7 @@ public class Steps {
     ;;
 
     @Before
-   // @Given("Start driver login")
+    // @Given("Start driver login")
     public void startDriverLogin() {
         driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
         loginPage = new LoginPage(driver);
@@ -39,6 +39,11 @@ public class Steps {
         homePage.policyButton.click();
         searchPage = new SearchPage(driver);
         homePage.isLoaded();
+    }
+
+    @After
+    public void closeBrowser() {
+        driver.close();
     }
 
     @Given("I am on the sign-in page")
@@ -133,32 +138,25 @@ public class Steps {
         Assertions.assertEquals("Please double-check the spelling, try a more generic search term or try other search terms.", searchPage.emptySearchResult.getText());
     }
 
-    @After
-    public void closeBrowser() {
-        driver.close();
+
+    @And("I add {string} of products to cart")
+    public void iSelectNumberProduct(int number) {
+    searchPage.addToCart(number);
     }
 
-    @And("I select {string} product")
-    public void iSelectNumberProduct() {
+
+    @Then("the cart contains the selected {string} items")
+    public void theCartContainsTheSelectedItems(int number) {
+        Assertions.assertEquals(number, searchPage.itemsInTheCard.size());
     }
 
-    @And("I add it to cart")
-    public void iAddItToCart() {
+    @When("Remove all the items from the cart")
+    public void removeAllTheItems() {
+        searchPage.removeAllItems();
     }
 
-    @Then("the cart contains the selected items")
-    public void theCartContainsTheSelectedItems() {
-    }
-
-    @Given("the cart contains the items")
-    public void theCartContainsTheItemS() {
-    }
-
-    @When("I press remove button")
-    public void iPressRemoveButton() {
-    }
-
-    @Then("the selected item is removed from the card")
-    public void theSelectedItemIsRemovedFromTheCard() {
+    @Then("Cart is empty")
+    public void cartIsEmpty() {
+        Assertions.assertEquals("O Ft", searchPage.totalPrice.getText());
     }
 }

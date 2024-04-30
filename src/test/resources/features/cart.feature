@@ -5,20 +5,15 @@ Feature: Cart
     When I enter 'jgedertceva@gmail.com' and 'MasterfieldTest2024'
     Then Login was successful
 
-  Scenario Outline: User adds products to the cart
+  Scenario Outline: User adds products to the cart and remove them
     Given I select search field
     When I enter '<item>'
     And The page with search results is shown
-    And I select '<number>' product
-    And I add it to cart
-    Then the cart contains the selected items
+    And I add '<number>' of products to cart
+    Then the cart contains the selected '<number>' items
     Examples:
-      | item       | number |
-      | tomato     | 7      |
-      | glass      | 3     |
-
-
-    Scenario: User removes products to the cart
-      Given the cart contains the items
-      When I press remove button
-      Then the selected item is removed from the card
+      | item   | number |
+      | tomato | 7      |
+      | glass  | 3      |
+    When Remove all the items from the cart
+    Then Cart is empty
