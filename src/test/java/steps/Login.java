@@ -27,9 +27,9 @@ public class Login {
     @Before
     public void startDriver() {
         driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
+        loginPage = new LoginPage(driver);
         driver.get(Settings.TESCO_URL);
         wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        loginPage = new LoginPage(driver);
         loginPage.signInButtonHomePage.click();
     }
 

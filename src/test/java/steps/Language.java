@@ -24,9 +24,9 @@ public class Language {
     @Before
     public void startDriver() {
 
-        driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
+     //   driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
         driver.get(Settings.TESCO_URL);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    //    wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         homePage = new HomePage(driver);
         homePage.policyButton.click();
         homePage.isLoaded();

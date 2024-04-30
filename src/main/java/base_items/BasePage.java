@@ -1,5 +1,7 @@
 package base_items;
 
+import driver.BrowserType;
+import driver.DriverInitializer;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +15,8 @@ public class BasePage {
     WebDriver driver;
     WebDriverWait wait;
     public BasePage(WebDriver driver) {
-        this.driver = driver;
+       this.driver = driver;
+    //    driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }

@@ -1,7 +1,5 @@
 package steps;
 
-import base_items.BaseTest;
-import base_items.HomePage;
 import base_items.SearchPage;
 import driver.BrowserType;
 import driver.DriverInitializer;
@@ -13,14 +11,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.List;
 
 public class Search {
     public WebDriver driver;
