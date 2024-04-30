@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class LoginPage extends HomePage{
+public class LoginPage extends BasePage{
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -24,7 +24,6 @@ public class LoginPage extends HomePage{
         addressField.sendKeys(email);
         passwordField.clear();
         passwordField.sendKeys(password);
-        isLoaded();
     }
 
     @FindBy(xpath = "//*[@id=\"main-content\"]/div/div/div[2]/div/div[2]/p[1]")
@@ -34,6 +33,12 @@ public class LoginPage extends HomePage{
     private WebElement signInForm;
     @FindBy(id = "signin-button")
     public WebElement signInButton;
+
+    @FindBy(id = "utility-header-logout-link")
+    public WebElement signOutButton;
+
+    @FindBy(id = "utility-header-account-link")
+    public WebElement accountButton;
 
     public void loginFormIsLoaded() {
         wait.until(ExpectedConditions.visibilityOf(signInForm));

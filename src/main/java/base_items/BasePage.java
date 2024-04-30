@@ -16,8 +16,7 @@ public class BasePage {
     WebDriverWait wait;
     public BasePage(WebDriver driver) {
        this.driver = driver;
-    //    driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+       this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 
@@ -30,4 +29,6 @@ public class BasePage {
     public void isLoaded() {
         wait.until(ExpectedConditions.visibilityOf(brandLogo));
     }
+    @FindBy(xpath = "//a[contains(text(),'Sign in')]")
+    public WebElement signInButtonHomePage;
 }

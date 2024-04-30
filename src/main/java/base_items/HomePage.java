@@ -9,10 +9,6 @@ public class HomePage extends BasePage{
         super(driver);
     }
 
-    @FindBy(xpath = "//span[contains(text(),'Accept all cookies')]//ancestor::button")
-    public WebElement policyButton;
-
-
     @FindBy(className = "content-title__txt")
     public WebElement contentTitle;
 
@@ -24,6 +20,5 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//*[@id='search-form']/button")
     public WebElement searchButton;
 
-    @FindBy(xpath = "//a[contains(text(),'Sign in')]")
-    public WebElement signInButtonHomePage;
+
 }
