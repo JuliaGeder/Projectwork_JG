@@ -1,3 +1,4 @@
+@RegressionTest
 Feature: Login
 
     Scenario: User supplies incorrect credentials

@@ -1,3 +1,4 @@
+@RegressionTest
 Feature: Language Change
 
   Scenario Outline: Language can be changed to English and to Hungarian as well

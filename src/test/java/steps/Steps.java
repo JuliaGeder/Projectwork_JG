@@ -1,5 +1,6 @@
 package steps;
 
+import base_items.AccountPage;
 import base_items.HomePage;
 import base_items.LoginPage;
 import base_items.SearchPage;
@@ -26,6 +27,7 @@ public class Steps {
     public LoginPage loginPage;
     public HomePage homePage;
     public SearchPage searchPage;
+    public AccountPage accountPage;
     ;;
 
     @Before
@@ -38,6 +40,7 @@ public class Steps {
         homePage = new HomePage(driver);
         homePage.policyButton.click();
         searchPage = new SearchPage(driver);
+        accountPage = new AccountPage(driver);
         homePage.isLoaded();
     }
 
@@ -158,5 +161,33 @@ public class Steps {
     @And("Cart is empty")
     public void cartIsEmpty() {
         Assertions.assertEquals("0 Ft", searchPage.totalPrice.getText());
+    }
+
+    @Given("My account page is open")
+    public void myAccountPageIsOpen() {
+        homePage.LinkToMyAccount.click();
+        accountPage.isLoadedAccount();
+    }
+
+    @When("I click on edit personal details")
+    public void iClickOnEditPersonalDetails() {
+        accountPage.clickEditPersonalDetails();
+    }
+
+    @And("I change name to {string},{string}")
+    public void iChangeNameToEnteredName(String first, String last) {
+        accountPage.clearInputs();
+        accountPage.enterNewName(first, last);
+    }
+
+    @And("I save changes")
+    public void iSaveChanges() {
+        accountPage.saveChanges();
+        accountPage.isLoadedAccount();
+    }
+
+    @Then("Name {string},{string} is displayed in Personal details")
+    public void nameIsDisplayedInPersonalDetails(String first, String last) {
+        Assertions.assertEquals(first + " " + last, accountPage.fullName.getText());
     }
 }
