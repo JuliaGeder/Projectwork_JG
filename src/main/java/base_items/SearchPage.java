@@ -16,45 +16,49 @@ public class SearchPage extends HomePage {
     }
 
 
-    @FindBy(xpath = "//*[@class = 'styled__StyledLIProductItem-sc-198470k-1 fmKLdy product-list--list-item']")
+    @FindBy(xpath = "//*[contains(@class, 'styled__StyledLIProductItem-sc-198470k-1 fmKLdy product-list--list-item')]")
     public List<WebElement> searchResults;
 
-    @FindBy (xpath = "//*[@class = 'heading query']")
+    @FindBy(xpath = "//*[@class = 'heading query']")
     public WebElement headingQuery;
 
-    @FindBy (xpath = "//*[@id=\"product-list\"]/div[2]/div[3]/div/div[1]/div[1]/div[2]/a")
+    @FindBy(xpath = "//*[@id=\"product-list\"]/div[2]/div[3]/div/div[1]/div[1]/div[2]/a")
     public WebElement show48PerPage;
 
-    @FindBy (xpath = "//*[@id=\"product-list\"]/div[2]/div[3]/div/div[2]/div/p")
+    @FindBy(xpath = "//*[@id=\"product-list\"]/div[2]/div[3]/div/div[2]/div/p")
     public WebElement emptySearchResult;
 
-    @FindBy(className = "styled__BaseButton-rsekm1-0 styled__PrimaryButton-rsekm1-2 jChbeY geeWOF styled__StyledButton-vtxwzb-5 japAxb beans-quantity-controls__add-button beans-button__container")
+    @FindBy(xpath = "//*[@class = 'styled__BaseButton-rsekm1-0 styled__PrimaryButton-rsekm1-2 jChbeY geeWOF styled__StyledButton-vtxwzb-5 japAxb beans-quantity-controls__add-button beans-button__container']")
     private List<WebElement> addButtons;
 
-    @FindBy (xpath = "//*[@id=\"mini-trolley\"]/div/div[2]/div[1]/div[2]/div[1]/div")
+    @FindBy(xpath = "//*[@class = 'sc-jIkXHa kIZajg']")
     private WebElement currentPrice;
 
-    public void addToCart(int number){
-        for (int i= 0; i < number; i++) {
+    public void addToCart(String number) {
+        for (int i = 0; i <  Integer.valueOf(number); i++) {
             Random rand = new Random();
-            int max= addButtons.size(), min=1;
+            int max = addButtons.size() - 1;
+            int min = 1;
             int buttonNumber = rand.nextInt(max - min + 1) + min;
             addButtons.get(buttonNumber).click();
             wait.until(ExpectedConditions.visibilityOf(currentPrice));
         }
     }
-    @FindBy (xpath = "//*[@class = 'sc-kDTinF jrofoJ basket-tile']")
+
+    @FindBy(xpath = "//*[@class = 'sc-jrQzAO kkiGfi basket-tile']")
     public List<WebElement> itemsInTheCard;
 
-    @FindBy (xpath = "//*[@class = 'styled__StyledIconButton-sc-rnkc1-1 bxKkFX ddsweb-button ddsweb-button--icon-button']")
+    @FindBy(xpath = "//*[@class = 'styled__StyledIconButton-sc-rnkc1-1 hHdQvE ddsweb-button ddsweb-button--icon-button']")
     private WebElement removeFromTheCart;
 
-    public void removeAllItems(){
-        for (int i= 0; i < itemsInTheCard.size(); i++) {
+    public void removeAllItems() {
+        int numberOfItems = itemsInTheCard.size();
+        for (int i = 0; i < numberOfItems; i++) {
             removeFromTheCart.click();
             wait.until(ExpectedConditions.visibilityOf(currentPrice));
         }
     }
-    @FindBy (xpath = "//*[@id=\"mini-trolley\"]/div/div[2]/div[1]/div[2]/div[1]/div/h4[2]")
+
+    @FindBy(xpath = "//*[@class = 'component__StyledHeading-sc-1t0ixqu-0 kOFvCa ddsweb-heading sc-jOxtWs jByFCH']")
     public WebElement totalPrice;
 }

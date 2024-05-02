@@ -11,9 +11,9 @@ Feature: Cart
     And The page with search results is shown
     And I add '<number>' of products to cart
     Then the cart contains the selected '<number>' items
+    And Remove all the items from the cart
+    And Cart is empty
     Examples:
       | item   | number |
       | tomato | 7      |
       | glass  | 3      |
-    When Remove all the items from the cart
-    Then Cart is empty

@@ -140,23 +140,23 @@ public class Steps {
 
 
     @And("I add {string} of products to cart")
-    public void iSelectNumberProduct(int number) {
+    public void iAddNumberProducts(String number) {
     searchPage.addToCart(number);
     }
 
 
     @Then("the cart contains the selected {string} items")
-    public void theCartContainsTheSelectedItems(int number) {
-        Assertions.assertEquals(number, searchPage.itemsInTheCard.size());
+    public void theCartContainsTheSelectedItems(String number) {
+        Assertions.assertEquals(Integer.valueOf(number), searchPage.itemsInTheCard.size());
     }
 
-    @When("Remove all the items from the cart")
+    @And("Remove all the items from the cart")
     public void removeAllTheItems() {
         searchPage.removeAllItems();
     }
 
-    @Then("Cart is empty")
+    @And("Cart is empty")
     public void cartIsEmpty() {
-        Assertions.assertEquals("O Ft", searchPage.totalPrice.getText());
+        Assertions.assertEquals("0 Ft", searchPage.totalPrice.getText());
     }
 }
