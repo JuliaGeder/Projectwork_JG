@@ -70,7 +70,7 @@ public class Steps {
 
     @Then("Login was successful")
     public void loginWasSuccessful() {
-        wait.until(ExpectedConditions.elementToBeClickable(loginPage.signOutButton));
+      loginPage.waitLogOutBtn();
     }
 
     @Given("language is set to {string}")

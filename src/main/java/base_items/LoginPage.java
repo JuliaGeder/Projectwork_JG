@@ -19,7 +19,7 @@ public class LoginPage extends BasePage {
 
     @FindBy(id = "password")
     public WebElement passwordField;
-    @FindBy(xpath = "//*[@id='main-content']/div/div/div[2]/div/div[2]/p[1]")
+    @FindBy(xpath = "//*[@class = 'styled__StyledBodyText-sc-119w3hf-5 cjzjrS beans-notification__title']")
     public WebElement errorMessage;
 
     //   @FindBy(id = "main-content")
@@ -29,7 +29,11 @@ public class LoginPage extends BasePage {
 
     //   @FindBy(id = "utility-header-logout-link")
     //   public WebElement signOutButton;
-    private static final By logOutBtn = By.id("utility-header-logout-link");
+  //  private static final By logOutBtn = By.id("utility-header-logout-link");
+    private static final By signInForm = By.id("main-content");
+
+    @FindBy(xpath = "//*[@class = 'styled__GreetingMessage-sc-9ltfcf-1 cfKIRj']")
+    private WebElement greetingMessage;
 
     @FindBy(id = "utility-header-account-link")
     public WebElement accountButton;
@@ -42,6 +46,9 @@ public class LoginPage extends BasePage {
     }
 
     public void loginFormIsLoaded() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(logOutBtn));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(signInForm));
+    }
+    public void waitLogOutBtn() {
+        wait.until(ExpectedConditions.visibilityOf(greetingMessage));
     }
 }
