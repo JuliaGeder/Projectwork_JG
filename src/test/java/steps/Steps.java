@@ -36,7 +36,7 @@ public class Steps {
         driver = DriverInitializer.initializeDriver(BrowserType.CHROME);
         loginPage = new LoginPage(driver);
         driver.get(Settings.TESCO_URL);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         homePage = new HomePage(driver);
         homePage.policyButton.click();
         searchPage = new SearchPage(driver);
@@ -125,15 +125,18 @@ public class Steps {
     @Then("The page with search results is shown")
     public void thePageWithSearchResultsIsShown() {
         wait.until(ExpectedConditions.visibilityOf(searchPage.headingQuery));
-        System.out.println(searchPage.searchResults.size() + " items on the first search page.");
+        Assertions.assertEquals(24,searchPage.searchResults.size());
     }
 
     @And("I click on Show more per page")
     public void iClickOnShowPerPage() {
         searchPage.show48PerPage.click();
         wait.until(ExpectedConditions.visibilityOfAllElements(searchPage.searchResults));
-        System.out.println(searchPage.searchResults.size() + " items on the first search page.");
+    }
 
+    @Then("The page with more search results is shown")
+    public void thePageWithMoreSearchResultsIsShown() {
+        Assertions.assertEquals(48,searchPage.searchResults.size());
     }
 
     @Then("Zero items were found")
