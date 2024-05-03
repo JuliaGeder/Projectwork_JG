@@ -11,7 +11,7 @@ public class AccountPage extends HomePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//*[@id=\"personal-details\"]/a[1]")
+    @FindBy(xpath = "//*[@id='personal-details']/a[1]")
     public WebElement editPersonalDetailsButton;
 
     @FindBy(id = "first-name")
@@ -20,9 +20,9 @@ public class AccountPage extends HomePage {
     @FindBy(id = "last-name")
     public WebElement inputLastName;
 
-    @FindBy(xpath = "//*[@id=\"personal-details\"]/form/div/div/button")
+    @FindBy(xpath = "//*[@id='personal-details']/form/div/div/button")
     public WebElement saveChangesPersonalDetails;
-    @FindBy(xpath = "//*[@id=\"personal-details\"]/div/div[1]/span")
+    @FindBy(xpath = "//*[@id='personal-details']/div/div[1]/span")
     public WebElement fullName;
 
     public void isLoadedAccount() {
@@ -40,10 +40,8 @@ public class AccountPage extends HomePage {
     }
 
     public void enterNewName(String first, String last) {
-
-   inputFirstName.sendKeys(first);
+        inputFirstName.sendKeys(first);
         inputLastName.sendKeys(last);
-
     }
 
     public void saveChanges() {

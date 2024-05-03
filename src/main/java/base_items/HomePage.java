@@ -19,7 +19,6 @@ public class HomePage extends BasePage{
     public WebElement searchField;
     @FindBy(xpath = "//*[@id='search-form']/button")
     public WebElement searchButton;
-
     @FindBy(linkText = "My account")
     public WebElement LinkToMyAccount;
 
