@@ -1,4 +1,4 @@
-@RegressionTest
+@SmokeTest
 Feature: Cart
 
   Background:

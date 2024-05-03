@@ -1,4 +1,4 @@
-@RegressionTest
+@SmokeTest
 Feature: Search
 
     Scenario Outline: User receives the search results after using the search field
